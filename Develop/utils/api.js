@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config();
 const axios = require("axios");
 
-const key = "3687b88944d5f7e6d389c97a8497e0bb19121e10";
+const key = "e5792a790a0959e57956359d90c34d0d6aff3c0d";
 
 class User {
   constructor(name, email, picUrl) {
@@ -12,18 +12,21 @@ class User {
 }
 
 const api = {
-  /**
-   * 
+
+  /** 
    * @param {username} username 
    * @return {User}
    */
   async getUser(username) {
+
     try {
       const userUrl = `https://api.github.com/users/${username}?access_token=${key}`;
       const response = await axios.get(userUrl);
+      console.log(response.data.avatar_url);
 
       if (response.data) {
         const newUser = new User(username, response.data.email, response.data.avatar_url);
+        // console.log(newUser.avatar_url);
         return newUser;
       }
       else return null;
@@ -34,9 +37,7 @@ const api = {
   }
 };
 
-
-
-const obj = api.getUser("alibahrami633");
-console.log(obj.email);
+const user1 = api.getUser("alibahrami633");
+console.log(user1.avatar_url);
 
 module.exports = api.getUser;
