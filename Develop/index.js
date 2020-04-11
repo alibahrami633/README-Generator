@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
-const readme = require("./utils/readme");
-const github = require("./utils/github");
+const generateMarkdown = require("./utils/generateMarkdown");
+const githubApi = require("./utils/api");
 
 const questions = [
 
